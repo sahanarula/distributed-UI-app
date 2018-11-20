@@ -1,0 +1,7 @@
+{
+  "name": "distributed-app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
