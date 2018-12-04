@@ -3,6 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IBeacon, IBeaconPluginResult } from '@ionic-native/ibeacon';
+import { Vibration } from '@ionic-native/vibration';
 
 import { HomePage } from '../pages/home/home';
 @Component({
@@ -14,7 +15,7 @@ export class MyApp {
   beaconData = {};
   beaconUuid: String;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private ibeacon: IBeacon) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private ibeacon: IBeacon, private vibration: Vibration) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -46,6 +47,7 @@ export class MyApp {
 
     delegate.didEnterRegion().subscribe(
       (pluginResult: IBeaconPluginResult) => {
+        this.vibration.vibrate(100);
         console.log('didEnterRegion: ', pluginResult);
         this.beaconData = pluginResult;
         document.dispatchEvent(new CustomEvent('enteredRegion', {bubbles: true, detail: pluginResult}));
@@ -54,7 +56,9 @@ export class MyApp {
 
     delegate.didExitRegion().subscribe(
       (pluginResult: IBeaconPluginResult) => {
+        this.vibration.vibrate(100);
         console.log('didExitRegion: ', pluginResult);
+        document.dispatchEvent(new CustomEvent('exitRegion', {bubbles: true, detail: pluginResult}));
       }
     );
 

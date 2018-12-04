@@ -1,5 +1,6 @@
 {
   "name": "Ionic",
+  "version": "1.0.0",
   "short_name": "Ionic",
   "start_url": "index.html",
   "display": "standalone",

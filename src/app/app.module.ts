@@ -8,6 +8,8 @@ import { IBeacon } from '@ionic-native/ibeacon';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+import { Vibration } from '@ionic-native/vibration';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -26,7 +28,8 @@ import { HomePage } from '../pages/home/home';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    IBeacon
+    IBeacon,
+    Vibration
   ]
 })
 export class AppModule {}
